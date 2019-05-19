@@ -6,6 +6,8 @@
 import scraperwiki
 import lxml.html
 import time
+from __future__ import print_function
+
 
 #
 # # Read in a page
