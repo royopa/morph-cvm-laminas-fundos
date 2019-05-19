@@ -20,7 +20,7 @@ for code in range(1, 999999):
     pk_partic = code
     nome_admin = root.get_element_by_id("lblAdmin").text
 
-    if "o foi encontrada nenhuma" in nome_admin:
+    if nome_admin == "Não foi encontrada nenhuma lâmina referente ao fundo":
         continue
 
     nome_fundo = root.get_element_by_id("lblNomeFundo").text
