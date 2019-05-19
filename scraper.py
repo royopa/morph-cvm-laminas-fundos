@@ -1,24 +1,42 @@
 # This is a template for a Python scraper on morph.io (https://morph.io)
 # including some code snippets below that you should find helpful
 
-# import scraperwiki
-# import lxml.html
+import scraperwiki
+import lxml.html
+import time
+
 #
 # # Read in a page
-# html = scraperwiki.scrape("http://foo.com")
-#
-# # Find something on the page using css selectors
-# root = lxml.html.fromstring(html)
-# root.cssselect("div[align='left']")
-#
-# # Write out to the sqlite database using scraperwiki library
-# scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
-#
-# # An arbitrary query against the database
-# scraperwiki.sql.select("* from data where 'name'='peter'")
 
-# You don't have to do things with the ScraperWiki and lxml libraries.
-# You can use whatever libraries you want: https://morph.io/documentation/python
-# All that matters is that your final data is written to an SQLite database
-# called "data.sqlite" in the current working directory which has at least a table
-# called "data".
+for code in range(1, 999999):
+    time.sleep(.2)
+    html = scraperwiki.scrape("http://cvmweb.cvm.gov.br/SWB/Sistemas/SCW/CPublica/CPublicaLamina.aspx?PK_PARTIC={}".format(str(code)))
+    #
+    # # Find something on the page using css selectors
+    root = lxml.html.fromstring(html)
+
+    pk_partic = code
+    nome_admin = root.get_element_by_id("lblAdmin").text
+
+    if nome_admin == "Não foi encontrada nenhuma lâmina referente ao fundo":
+        continue
+
+    nome_fundo = root.get_element_by_id("lblNomeFundo").text
+    cnpj_fundo = root.get_element_by_id("lblCnpj").text.replace('.', '').replace('-', '').replace('/', '')
+    tipo_fundo = root.get_element_by_id("lblTipo").text
+    codigo_cvm = root.get_element_by_id("lblCodCVM").text
+    cnpj_admin = root.get_element_by_id("lblCnpjAdmin").text.replace('.', '').replace('-', '').replace('/', '')
+
+    data = {
+        "pk_partic": pk_partic,
+        "nome_fundo": nome_fundo,
+        "cnpj_fundo": cnpj_fundo,
+        "tipo_fundo": tipo_fundo,
+        "codigo_cvm": codigo_cvm,
+        "nome_admin": nome_admin,
+        "cnpj_admin": cnpj_admin
+    }
+
+
+# # Write out to the sqlite database using scraperwiki library
+scraperwiki.sqlite.save(unique_keys=['pk_partic'], data=data)
