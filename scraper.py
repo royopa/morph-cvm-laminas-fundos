@@ -11,6 +11,7 @@ import time
 # # Read in a page
 
 for code in range(1, 999999):
+    print(str(code), sep=' ')
     time.sleep(.2)
     html = scraperwiki.scrape("http://cvmweb.cvm.gov.br/SWB/Sistemas/SCW/CPublica/CPublicaLamina.aspx?PK_PARTIC={}".format(str(code)))
     #
