@@ -23,6 +23,9 @@ for code in range(1, 999999):
     pk_partic = code
     nome_admin = root.get_element_by_id("lblAdmin").text
 
+    if nome_admin is None:
+        continue    
+    
     if "o foi encontrada nenhuma" in nome_admin:
         continue
 
