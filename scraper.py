@@ -45,6 +45,5 @@ for code in range(1, 50000):
         "cnpj_admin": cnpj_admin
     }
 
-
-# # Write out to the sqlite database using scraperwiki library
-scraperwiki.sqlite.save(unique_keys=['pk_partic'], data=data)
+    # Write out to the sqlite database using scraperwiki library
+    scraperwiki.sqlite.save(unique_keys=['pk_partic'], data=data)
