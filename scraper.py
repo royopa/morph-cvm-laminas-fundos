@@ -12,7 +12,7 @@ import time
 #
 # # Read in a page
 
-for code in range(200, 20000):
+for code in range(20001, 40000):
     print(str(code), end=' ')
     time.sleep(.6)
     html = scraperwiki.scrape("http://cvmweb.cvm.gov.br/SWB/Sistemas/SCW/CPublica/CPublicaLamina.aspx?PK_PARTIC={}".format(str(code)))
