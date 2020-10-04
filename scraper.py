@@ -58,6 +58,8 @@ def main():
     lamina_fi = sorted(lamina_fi)
     df_lamina_fi = get_df_consolidado(lamina_fi)
     print(len(df_lamina_fi))
+    
+    print(df_lamina_fi.columns)
 
     for row in df_lamina_fi.to_dict('records'):
         scraperwiki.sqlite.save(
