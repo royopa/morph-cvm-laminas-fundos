@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+import os
 os.environ['SCRAPERWIKI_DATABASE_NAME'] = 'sqlite:///data.sqlite'
 import scraperwiki
 import lxml.html
 import time
 import cvm_captura_informacoes_zip
-import os
 import pandas as pd
 
 
