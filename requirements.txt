@@ -6,3 +6,4 @@ pandas
 requests
 requests-html
 sqlalchemy
+tqdm
